@@ -1,0 +1,15 @@
+.stack_labels label {
+    float:initial;
+    display:none;
+}
+.stack_labels2 label {
+    float:initial;
+}
+/*
+form .aligned div.help:last-child {
+    margin:0;
+}
+*/
+form .stack_labels div.help:last-child {
+    margin:0;
+}
