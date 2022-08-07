@@ -12,7 +12,7 @@ class DeviceList(models.Model):
    
 
 class Decoder(models.Model):
-    dev_id2 = models.ForeignKey(DeviceList, on_delete=models.CASCADE)
+    dev_id2 = models.ForeignKey(DeviceList, on_delete=models.CASCADE, verbose_name='Device NameD')
     schema_jsonfield = JSONField(default=list)
     start_date = models.DateTimeField('Start')
     end_date = models.DateTimeField('End')
