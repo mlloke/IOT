@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'jsoneditor',
     'whitenoise.runserver_nostatic',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
