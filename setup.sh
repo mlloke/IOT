@@ -23,7 +23,7 @@ cd /home/ubuntu/mysite
 
 #django project make migrations
 python3 -m pip install django-jsoneditor
-python3 -m pip install Django==3.1
+#python3 -m pip install Django==3.1
 #python3 manage.py makemigrations
 python3 manage.py migrate
 python3 manage.py createsuperuser
