@@ -6,13 +6,61 @@ from django.http import Http404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+from rest_framework import mixins
+from rest_framework import generics
 from decoderapp.models import DeviceList
 from decoderapp.serializers import DeviceListSerializer
 #from django.views.decorators.csrf import csrf_exempt
 
 """
-tutorial 3
+tutorial 3 generics-class based views
 """
+
+class decoder_list(generics.ListCreateAPIView):
+    queryset = DeviceList.objects.all()
+    serializer_class = DeviceListSerializer
+
+
+class decoder_detail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = DeviceList.objects.all()
+    serializer_class = DeviceListSerializer
+
+
+"""
+tutorial 3 mixin
+
+class decoder_list(mixins.ListModelMixin,
+                    mixins.CreateModelMixin,
+                    generics.GenericAPIView):
+    queryset = DeviceList.objects.all()
+    serializer_class = DeviceListSerializer
+    
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+        
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+class decoder_detail(mixins.RetrieveModelMixin,
+                    mixins.UpdateModelMixin,
+                    mixins.DestroyModelMixin,
+                    generics.GenericAPIView):
+    queryset = DeviceList.objects.all()
+    serializer_class = DeviceListSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+"""
+
+"""
+tutorial 3
+
 
 class decoder_list(APIView):
     def get(self, rquest, format=None):
@@ -52,7 +100,7 @@ class decoder_detail(APIView):
         dev = self.get_object(pk)
         dev.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)        
-        
+"""       
 
 """
 tutorial 2
