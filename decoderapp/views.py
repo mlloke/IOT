@@ -5,6 +5,7 @@ from django.http import Http404
 #from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import status
 from decoderapp.models import DeviceList
 from decoderapp.serializers import DeviceListSerializer
 #from django.views.decorators.csrf import csrf_exempt
@@ -22,16 +23,17 @@ class decoder_list(APIView):
     def post(self, request, format=None):
         serializer = DeviceListSerializer(data=request.data)
         if serializer.is_valid():
-            seralizer.save()
-            return Response(seralizer.data, status=status.HTTP_201_CREATED)
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class decoder_detail(APIView):
     def get_object(self,pk):
        try:
-           dev = DeviceList.objects.get(pk=pk)
+           dev = DeviceList.objects.get(id=pk)
        except DeviceList.DoesNotExist:
            raise Http404
+       return dev
     
     def get(self, request, pk, format=None):    
         dev = self.get_object(pk)
@@ -40,7 +42,7 @@ class decoder_detail(APIView):
         
     def put(self, request, pk, format=None):
         dev = self.get_object(pk)
-        serializer = DiviceListSerializer(dev, data=request.data)
+        serializer = DeviceListSerializer(dev, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

@@ -4,7 +4,7 @@ from .models import DeviceList
 class DeviceListSerializer(serializers.ModelSerializer):
    class Meta:
        model = DeviceList
-       fields = ['dev_id']
+       fields = ['dev_id', 'id']
 
 """
 class DeviceListSerializer(serializers.Serializer):
