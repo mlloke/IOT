@@ -57,9 +57,10 @@ class DeviceAdmin(admin.ModelAdmin):
  
     fieldsets = [
         ('Device ID', {'fields': ['dev_id']}),
+        ('Owner', {'fields': ['owner']}),
         ]
 
-    list_display = ("dev_id",)
+    list_display = ("dev_id","owner")
     
 
 admin.site.register(DeviceList, DeviceAdmin)
