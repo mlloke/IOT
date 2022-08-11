@@ -8,8 +8,12 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework import mixins
 from rest_framework import generics
+from rest_framework import permissions
 from decoderapp.models import DeviceList
 from decoderapp.serializers import DeviceListSerializer
+from decoderapp.serializers import UserSerializer
+from decoderapp.permissions import IsOwnerOrReadOnly
+from django.contrib.auth.models import User
 #from django.views.decorators.csrf import csrf_exempt
 
 """
@@ -20,11 +24,26 @@ class decoder_list(generics.ListCreateAPIView):
     queryset = DeviceList.objects.all()
     serializer_class = DeviceListSerializer
 
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+        
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class decoder_detail(generics.RetrieveUpdateDestroyAPIView):
     queryset = DeviceList.objects.all()
     serializer_class = DeviceListSerializer
 
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                      IsOwnerOrReadOnly]
+    
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 """
 tutorial 3 mixin
