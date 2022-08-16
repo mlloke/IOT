@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'jsoneditor',
     'whitenoise.runserver_nostatic',
     'rest_framework',
+    'snippets',
 ]
 
 MIDDLEWARE = [
@@ -149,3 +150,8 @@ JSON_EDITOR_INIT_JS = 'jsoneditor-init.js'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}

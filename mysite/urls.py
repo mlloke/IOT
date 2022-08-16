@@ -21,5 +21,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('decoderapp.urls')),
+    path('', include('snippets.urls')),
 #    path('schema2admin/', schema2_site.urls),
 ]
