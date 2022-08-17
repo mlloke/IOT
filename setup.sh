@@ -12,11 +12,10 @@ sudo -u postgres -H psql -c "grant all privileges on database $DB_NAME to $DB_US
 echo "Postgres User '$DB_USER' and database '$DB_NAME' created."
 
 #setup Django postgres
-python3 -m pip install Django psycopg2
-python3 -m pip install psycopg2==2.8.6
-python3 -m pip install django-widget-tweaks
-python3 -m pip install djangorestframework
-python3 -m pip install pygments
+pip install psycopg2==2.8.6
+pip install django-widget-tweaks
+pip install djangorestframework
+pip install pygments
 echo "Django psycopg2, widget-tweaks, json-editor installed."
 
 
@@ -24,7 +23,7 @@ cd /home/ubuntu/mysite
 
 
 #django project make migrations
-python3 -m pip install django-jsoneditor
+pip install django-jsoneditor
 #python3 -m pip install Django==3.1
 #python3 manage.py makemigrations
 python3 manage.py migrate
