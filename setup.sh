@@ -16,6 +16,7 @@ python3 -m pip install Django psycopg2
 python3 -m pip install psycopg2==2.8.6
 python3 -m pip install django-widget-tweaks
 python3 -m pip install djangorestframework
+python3 -m pip install pygments
 echo "Django psycopg2, widget-tweaks, json-editor installed."
 
 
